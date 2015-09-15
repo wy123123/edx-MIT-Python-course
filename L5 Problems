@@ -119,3 +119,23 @@ def isIn(char, aStr):
         return isIn(char, aStr[len(aStr)/2:])
     elif ord(char) == ord(aStr[len(aStr)/2]):
         return True
+#q9
+def semordnilap(str1, str2):
+    '''
+    str1: a string
+    str2: a string
+    
+    returns: True if str1 and str2 are semordnilap;
+             False otherwise.
+    '''
+    # Your code here
+    if len(str1) != len(str2):
+        return False
+    elif len(str1)==0:
+        return True
+    elif str1[0] == str2[-1]:
+        str1 = str1[1:]
+        str2 = str2[:-1]
+        return semordnilap(str1,str2)
+    elif str1[0] != str2[-1]:
+        return False

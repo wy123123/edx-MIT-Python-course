@@ -22,3 +22,151 @@ def radiationExposure(start, stop, step):
         area = step*f(start+i*step)+area
         
     return area
+
+
+#hangman part 1
+def isWordGuessed(secretWord, lettersGuessed):
+    '''
+    secretWord: string, the word the user is guessing
+    lettersGuessed: list, what letters have been guessed so far
+    returns: boolean, True if all the letters of secretWord are in lettersGuessed;
+      False otherwise
+    '''
+    # FILL IN YOUR CODE HERE...
+    for i in range(len(secretWord)):
+        if secretWord[i] not in lettersGuessed:
+            return False
+    return True
+    
+#hangman part 2
+def getGuessedWord(secretWord, lettersGuessed):
+    '''
+    secretWord: string, the word the user is guessing
+    lettersGuessed: list, what letters have been guessed so far
+    returns: string, comprised of letters and underscores that represents
+      what letters in secretWord have been guessed so far.
+    '''
+    # FILL IN YOUR CODE HERE...
+    guessword=''
+    for i in range(len(secretWord)):
+        if secretWord[i] not in lettersGuessed:
+            guessword +='_'
+        else:
+            guessword += secretWord[i]
+    return guessword
+    
+#hangman part 3
+import string
+def getAvailableLetters(lettersGuessed):
+    '''
+    lettersGuessed: list, what letters have been guessed so far
+    returns: string, comprised of letters that represents what letters have not
+      yet been guessed.
+    '''
+    # FILL IN YOUR CODE HERE...
+    a = ''
+    for i in range(len(string.ascii_lowercase)):
+        if string.ascii_lowercase[i] not in lettersGuessed:
+            a += string.ascii_lowercase[i]
+    return a
+    
+#hangman part 4
+def hangman(secretWord):
+    '''
+    secretWord: string, the secret word to guess.
+
+    Starts up an interactive game of Hangman.
+
+    * At the start of the game, let the user know how many 
+      letters the secretWord contains.
+
+    * Ask the user to supply one guess (i.e. letter) per round.
+
+    * The user should receive feedback immediately after each guess 
+      about whether their guess appears in the computers word.
+
+    * After each round, you should also display to the user the 
+      partially guessed word so far, as well as letters that the 
+      user has not yet guessed.
+
+    Follows the other limitations detailed in the problem write-up.
+    '''
+    # FILL IN YOUR CODE HERE...
+    letterGuessed = []
+    counter = 8
+    print "Welcome to the game Hangman!"
+    print "I am thinking of a word that is",str(len(secretWord)),"letters long."
+    print "------------"
+    while (not isWordGuessed(secretWord, letterGuessed)) and (counter >= 1):
+        print "You have",str(counter),"guesses left."
+        print "Available letters:",getAvailableLetters(letterGuessed)
+        guess = raw_input("Please guess a letter: ")
+        if guess in letterGuessed:
+            print "Oops! You've already guessed that letter:",getGuessedWord(secretWord, letterGuessed)
+        else:
+            letterGuessed.append(guess)
+            if guess in secretWord:
+                print "Good guess: ", getGuessedWord(secretWord, letterGuessed)
+            else:
+                print "Oops! That letter is not in my word:",getGuessedWord(secretWord, letterGuessed)
+                counter -= 1
+        print "------------"                
+       
+        
+    if counter <1:
+         print "Sorry, you ran out of guesses. The word was",secretWord
+    else:
+         print "Congratulations, you won!"
+         
+#hangman part 5
+# When your hangman function passes the checks in the previous
+# box, paste your function definition here to test it on harder 
+# input cases.
+
+def hangman(secretWord):
+    '''
+    secretWord: string, the secret word to guess.
+
+    Starts up an interactive game of Hangman.
+
+    * At the start of the game, let the user know how many 
+      letters the secretWord contains.
+
+    * Ask the user to supply one guess (i.e. letter) per round.
+
+    * The user should receive feedback immediately after each guess 
+      about whether their guess appears in the computers word.
+
+    * After each round, you should also display to the user the 
+      partially guessed word so far, as well as letters that the 
+      user has not yet guessed.
+
+    Follows the other limitations detailed in the problem write-up.
+    '''
+    # FILL IN YOUR CODE HERE...
+    letterGuessed = []
+    counter = 8
+    print "Welcome to the game Hangman!"
+    print "I am thinking of a word that is",str(len(secretWord)),"letters long."
+    print "------------"
+    while (not isWordGuessed(secretWord, letterGuessed)) and (counter >= 1):
+        print "You have",str(counter),"guesses left."
+        print "Available letters:",getAvailableLetters(letterGuessed)
+        guess = raw_input("Please guess a letter: ")
+        guess = guess.lower()
+        if guess in letterGuessed:
+            print "Oops! You've already guessed that letter:",getGuessedWord(secretWord, letterGuessed)
+        else:
+            letterGuessed.append(guess)
+            if guess in secretWord:
+                print "Good guess: ", getGuessedWord(secretWord, letterGuessed)
+            else:
+                print "Oops! That letter is not in my word:",getGuessedWord(secretWord, letterGuessed)
+                counter -= 1
+        print "------------"                
+       
+        
+    if counter <1:
+         print "Sorry, you ran out of guesses. The word was",secretWord
+    else:
+         print "Congratulations, you won!"

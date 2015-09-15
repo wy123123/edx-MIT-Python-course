@@ -11,3 +11,36 @@ def oddTuples(aTup):
         if (i+1)%2 !=0:
             l = l+tuple([aTup[i]])
     return l
+    
+#q10
+def howMany(aDict):
+    '''
+    aDict: A dictionary, where all the values are lists.
+
+    returns: int, how many values are in the dictionary.
+    '''
+    # Your Code Here
+    s = 0
+    for i in aDict.values():
+        s += len(i)
+    return s
+
+#q11
+def biggest(aDict):
+    '''
+    aDict: A dictionary, where all the values are lists.
+
+    returns: The key with the largest number of values associated with it
+    '''
+    # Your Code Here
+    m = 0
+    m2 = None
+    for i in aDict.keys():
+        if m ==0:
+            m = len(aDict[i])
+            m2 = i
+        else:
+            if m < len(aDict[i]):
+                m = len(aDict[i])
+                m2 = i
+    return m2

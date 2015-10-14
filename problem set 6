@@ -21,6 +21,22 @@ def buildCoder(shift):
         else:
             DICT[string.ascii_lowercase[i]]=string.ascii_lowercase[(i + shift)]
 
-        
-    
     return DICT # Remove this comment when you code the function
+
+
+def applyCoder(text, coder):
+    """
+    Applies the coder to the text. Returns the encoded text.
+
+    text: string
+    coder: dict with mappings of characters to shifted characters
+    returns: text after mapping coder chars to original text
+    """
+    ### TODO
+    encode = ""
+    for i in text:
+        try:
+            encode+=(coder[i])
+        except:
+            encode+=i
+    return encode

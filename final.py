@@ -7,9 +7,9 @@ def insert(atMe, newFrob):
     # Your Code Here
     #check if newFrob is alphabetically before atMe
     if checkPosition(atMe,newFrob)=='after' and checkPosition(atMe.getAfter(),newFrob)=='after':
-        insert(atMe.getAfter(),newFrob)
+        return insert(atMe.getAfter(),newFrob)
     elif checkPosition(atMe,newFrob)=='before' and checkPosition(atMe.getBefore(),newFrob)=='before':
-        insert(atMe.getBefore(),newFrob)
+        return insert(atMe.getBefore(),newFrob)
     elif checkPosition(atMe,newFrob)=='before' and (checkPosition(atMe.getBefore(),newFrob)=='after' or checkPosition(atMe.getBefore(),newFrob)=='end') :
     #elif checkPosition(atMe,newFrob)=='before' and checkPosition(atMe.getBefore(),newFrob)=='after':
         before_frob = atMe.getBefore()
